@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>2 - Servidor de Aplicaciones Web</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+        <a href="index.html">Uni 1</a>
+        <a href="unidad2.html">Uni 2</a>
+        <a href="unidad3.html">Uni 3</a>
+        <a href="unidad4.html">Uni 4</a>
+    </nav>
+    <main>
+        <h3>2 - Servidor de aplicaciones web</h3>
+        <h3>Software encargado de la ejecución del código servidor</h3>
+        <ul>
+            <li>Recibe del servidor web solicitudes para ejecutar código servidor (PHP, Python, Java, .NET, etc.), ejecuta el código y devuelve una respuesta.</li>
+            <li>Ejemplos: consulta a una base de datos, envío de correo, etc.</li>
+        </ul>
+    
+        <h2>Instalación</h2>
+        <p>Es necesario instalar el intérprete o máquina virtual del lenguaje correspondiente (PHP, Python, Java, etc.).</p>
+        <p><strong>Ejemplo:</strong> <code>apt install php</code></p>
+        <p>También es necesario instalar el plug-in o conector para que el servidor web (Apache, IIS, etc.) le solicite al servidor de aplicaciones que ejecute el código servidor.</p>
+        <p><strong>Ejemplo:</strong> <code>apt install libapache2-mod-php</code></p>
+        <ul>
+            <li>Se asocian las extensiones de archivo (.php, etc.) a cada plug-in.</li>
+        </ul>
+
+
+        <h2>Modelo de ejecución</h2>
+        <p>En algunos casos, el código del servidor de aplicaciones se ejecuta dentro del proceso de Apache.</p>
+        <ul>
+            <li>Funcionamiento por defecto de los módulos de PHP o Python.</li>
+        </ul>
+        <p>En otros casos, existe un proceso independiente que ejecuta el código.</p>
+        <ul>
+            <li>Instalación más habitual y recomendada en el caso de Java o .NET.</li>
+        </ul>
+        <p>Esto es relevante de cara a los permisos. Por ejemplo:</p>
+        <ul>
+            <li>Apache se ejecuta con el usuario <strong>A</strong>.</li>
+            <li>El proceso de Java se ejecuta con el usuario <strong>B</strong>.</li>
+            <li>Los ficheros web (HTML, JS, CSS, etc.) deben poder ser leídos por el usuario <strong>A</strong>.</li>
+            <li>Si se quiere leer/escribir a un fichero en disco desde el código de Java, el usuario <strong>B</strong> es el que tiene que tener permisos para acceder al fichero (lectura/escritura).</li>
+        </ul>
+
+
+        <h2>Despliegue</h2>
+        <ul>
+            <li>Se copia la aplicación en el directorio correspondiente.</li>
+            <li>Existen varias posibilidades:
+                <ul>
+                    <li><strong>Pueden ser únicamente ficheros de código fuente</strong> (ej: PHP)
+                        <ul>
+                            <li>Se pueden modificar directamente en el directorio de despliegue.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Pueden ser paquetes pregenerados</strong> (ej: WAR en Java)
+                        <ul>
+                            <li>Si se quieren modificar hay que volver a generar el paquete.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Puede ser híbrido</strong> (ej: paquete con ficheros ASPX + DLL en .NET)
+                        <ul>
+                            <li>Si se quieren hacer cambios, es conveniente volver a generarlo todo.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Seguridad</h2>
+        <ul>
+            <li>El acceso de los usuarios a la aplicación es a través del servidor web.</li>
+            <li>Se debe configurar HTTPS en el servidor web.</li>
+            <li><strong>Autenticación:</strong> el acceso a los recursos se configura en el servidor web.
+                <ul>
+                    <li>Normalmente se permite el acceso anónimo para todo y es la propia aplicación la que autentica a los usuarios.</li>
+                    <li>Hay determinados directorios usados para almacenar información protegida (ejemplo: la carpeta <code>App_Data</code> en el IIS nunca es accesible).</li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <h2>Componentes principales de la arquitectura de un servidor Web</h2>
+        <ul>
+            <li><strong>Runtime:</strong> Es la parte que se encarga de ejecutar las aplicaciones que hay en los contenedores cuando éstas son interpretadas o de máquina virtual. Para ello, las traduce y envía, línea a línea, a la CPU o a la máquina virtual. Si las aplicaciones son programas directamente ejecutables (compilados o ensamblados), no es necesario realizar este paso.</li>
+
+            <li><strong>Elementos internos:</strong>
+                <ul>
+                    <li><strong>Contenedores de aplicación o contextos:</strong> El contenedor es el lugar lógico en donde se ensambla y despliega una aplicación.</li>
+                    <li><strong>Runtime:</strong> Ejecuta las aplicaciones en los contenedores, interpretando línea a línea hacia la CPU o máquina virtual.</li>
+                    <li><strong>Motor:</strong> Administra las peticiones del listener adapter, redirigiéndolas al contenedor apropiado y recogiendo los resultados, siguiendo reglas del archivo de configuración.</li>
+                    <li><strong>Servidores virtuales:</strong> Algunos servidores, como Tomcat, pueden comportarse como servidores independientes con distintas direcciones IP y puertos. Esto permite aprovechar recursos físicos y aislar aplicaciones.</li>
+                </ul>
+            </li>
+
+            <li><strong>Motor administrador de solicitudes</strong></li>
+
+            <li><strong>[Conectores] Servidor Web &harr; Servidor Aplicaciones</strong><br>
+            <em>Recuerda:</em> Los servidores de aplicaciones están formados por servidores virtuales (algunos), motor, contenedores de aplicaciones y runtime.</li>
+
+            <li><strong>Contenedores [alojamiento de aplicaciones]:</strong>
+                <ul>
+                    <li><strong>Paquete que contiene una aplicación, su configuración y todas sus dependencias</strong>
+                        <ul>
+                            <li>Permiten automatizar la instalación de un entorno de ejecución
+                                <ul>
+                                    <li>Reducen los errores manuales</li>
+                                    <li>Facilitan el despliegue de nuevas máquinas con la misma configuración y entorno exactamente
+                                        <ul>
+                                            <li>Escalabilidad horizontal</li>
+                                            <li>Recuperación ante una posible caída del sistema</li>
+                                            <li>Tener distintos entornos de ejecución (desarrollo, preproducción, producción)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Permiten aislar unas aplicaciones de otras en un mismo sistema operativo</li>
+                            <li>Utiliza como entorno de ejecución base el sistema operativo donde se está ejecutando, por lo que solo contiene lo imprescindible (es ligero)</li>
+                            <li>Disponible para Windows y Linux</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li><strong>Docker:</strong>
+                <ul>
+                    <li><strong>El software de contenedores más usado</strong>
+                        <ul>
+                            <li>Es habitual usar otros software para gestionar múltiples contenedores en entornos complejos, como Kubernetes
+                                <ul>
+                                    <li>Comunicación entre distintos contenedores</li>
+                                    <li>Despliegue y rollback</li>
+                                    <li>Balanceo de carga</li>
+                                    <li>Monitorización</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <h2>Arquitectura de un servidor de aplicaciones Tomcat</h2>
+        <p><strong>Tomcat</strong> es un contenedor de aplicaciones con licencia libre basado en Java. Implementa las tecnologías Java Servlets y Java Server Pages, que han contribuido de forma muy notable al desarrollo de páginas web dinámicas en tiempo real, y cuya fluidez y riqueza de elementos eran hasta hace relativamente poco patrimonio exclusivo de las aplicaciones instaladas directamente en los ordenadores de los usuarios.</p>
+
+        <p>Estas tecnologías han sido fundamentales también en el diseño de muchas aplicaciones que se procesan, de manera distribuida, en servidores dispersos por el mundo entero. Por este motivo, Tomcat será nuestra principal referencia a la hora de realizar prácticas.</p>
+
+        <p>Tomcat puede funcionar como un contenedor de aplicaciones, que depende de un servidor web, o como uno con autonomía propia; en cualquier caso necesita una máquina virtual de Java (<em>runtime</em>) para ser un servidor de aplicaciones completo. Tomcat se compone de varias partes, llamadas <strong>contenedores</strong>, que se caracterizan por su estructura anidada, y tienen su propia nomenclatura. Veamos a continuación cuáles son:</p>
+
+        <ul>
+            <li><strong>Servidor:</strong> Ofrece las aplicaciones a la red.</li>
+            <li><strong>Servicio:</strong> Un servidor puede ofrecer varios servicios, cada uno de ellos está formado por un motor y un grupo de conectores.</li>
+            <li><strong>Motor:</strong> El motor Catalina es el componente central de Tomcat. Envía las peticiones a los diferentes contextos, o a los diferentes servidores virtuales y administra el estado de las aplicaciones.</li>
+            <li><strong>Host:</strong> Es un servidor virtual que se distingue del resto por su IP o por su puerto de escucha.</li>
+            <li><strong>Contexto:</strong> Son las aplicaciones propiamente dichas. Una clase Java ejecutable en el servidor, o una aplicación completa con sus archivos y estructura, forma un contexto.</li>
+        </ul>
+
+        <p>Los archivos de configuración de Tomcat se hallan en: <code>Directorio_de_Tomcat/conf/</code>. Para conocer el directorio de Tomcat podemos consultar la variable de estado del sistema operativo <code>CATALINA_HOME</code>, cuyos archivos son los siguientes:</p>
+
+        <ul>
+            <li><code>server.xml</code>: describe cómo se combinan los componentes que componen la arquitectura del servidor.</li>
+            <li><code>context.xml</code>: configuración del contexto por defecto.</li>
+            <li><code>web.xml</code>: descriptor de despliegue por defecto.</li>
+        </ul>
+
+</main>
+</body>
+</html>

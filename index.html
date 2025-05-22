@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unidad 1 - Despliegue de Aplicaciones Web</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+        <a href="index.html">Uni 1</a>
+        <a href="unidad2.html">Uni 2</a>
+        <a href="unidad3.html">Uni 3</a>
+        <a href="unidad4.html">Uni 4</a>
+    </nav>
+    <main>
+        <h3>1 - Servidor web y transferencia de archivos</h3>
+        <h3>¿Qué es un servidor web y cuáles son los elementos clave de su configuración para garantizar un acceso seguro?</h3>
+        <p>Un servidor web es un software que recibe peticiones de clientes (navegadores) y entrega contenido. Para garantizar la seguridad, es fundamental configurar el uso de HTTPS (activando SSL/TLS), gestionar certificados digitales válidos, establecer autenticación de usuarios y definir reglas de control de acceso (por ejemplo, mediante hosts virtuales y módulos de seguridad).</p>
+
+        <h3>¿Qué es la implantación de la arquitectura web?</h3>
+        <p>La implantación de la arquitectura web es el proceso de organizar y desplegar los distintos recursos 
+        (servidores, bases de datos, CDN, funciones serverless, etc.) siguiendo un diseño estructurado que garantice:</p>
+        <ul>
+            <li>Facilidad de uso y accesibilidad para el usuario final.</li>
+            <li>Utilidad y mantenibilidad del sistema, facilitando actualizaciones y correcciones.</li>
+            <li>Adaptabilidad a distintos entornos y requisitos cambiantes.</li>
+            <li>Escalabilidad, tanto horizontal (añadiendo más máquinas al conjunto) como vertical (añadiendo recursos—CPU, RAM—a cada máquina).</li>
+            <li>Portabilidad, de modo que la misma aplicación pueda moverse entre diferentes infraestructuras físicas o en la nube sin necesidad de reescribir código.</li>
+        </ul>
+
+        <h3>¿Qué modelos de arquitectura web y cuáles son sus características?</h3>
+        <p>Los modelos de arquitectura incluyen el cliente/servidor y el modelo de tres capas.</p>
+
+        <h4>Resumen simplificado de la arquitectura cliente/servidor</h4>
+        <p>En su forma más básica, una página web opera bajo el modelo cliente/servidor:</p>
+        <ul>
+            <li><strong>Clientes:</strong> los navegadores (o programas) que usan los usuarios.</li>
+            <li><strong>Servidor:</strong> una máquina dedicada que recibe las peticiones de los clientes y envía la información solicitada.</li>
+        </ul>
+        <p>Cuando un usuario pide una página, el navegador envía una solicitud al servidor web. Éste responde entregando archivos, normalmente:</p>
+        <ul>
+            <li>HTML estático (texto con marcas de hipertexto).</li>
+            <li>Archivos multimedia (imágenes, audio, vídeo).</li>
+        </ul>
+        <p>El navegador interpreta ese contenido y lo muestra en pantalla. En este esquema estático, todos los usuarios reciben exactamente la misma página, que solo puede cambiar si los programadores modifican manualmente los archivos en el servidor.</p>
+    
+        <h4>Modelo de tres capas</h4>
+        <p>El <strong>modelo de tres capas</strong> es una adaptación a la web del patrón Modelo-Vista-Controlador, que distingue tres elementos:</p>
+        <ul>
+            <li><strong>Modelo:</strong> El objetivo del patrón es que la vista y el controlador “traduzcan” en ambos sentidos el esquema de datos mental del usuario (su conocimiento) al esquema de datos guardado en el ordenador, al que se llama modelo. De este modo, el usuario puede consultar y manipular los datos del ordenador según desee, sin importarle cómo se organizan en éste.</li>
+            <li><strong>Vista:</strong> Una vista es una perspectiva del modelo, o de una parte de éste, adecuada para su presentación, y que comunica directamente con el modelo.</li>
+            <li><strong>Controlador:</strong> Es la interfaz que presenta la vista al usuario y le permite comunicarse con el sistema.</li>
+        </ul>
+
+        <h4>Capas del modelo de tres capas</h4>
+        <ul>
+            <li><strong>Capa 1. Navegador web:</strong> Es el controlador, muestra los datos al usuario y le permite hacer sus propias consultas al sistema mediante formularios, así como entregar los resultados al servidor de aplicaciones.</li>
+            <li><strong>Capa 2. Servidor de aplicaciones web:</strong> Forma la Vista. Las aplicaciones realizan las consultas a la base de datos y generan las páginas web, que se enviarán al usuario según el contenido de dicha base de datos y las peticiones procedentes del controlador. El servidor web que envía las páginas al navegador del cliente y recibe los formularios de éste está integrado en el servidor de aplicaciones.</li>
+            <li><strong>Capa 3. Servidor de base de datos:</strong> Equivale al modelo en el patrón Modelo-Vista-Controlador.</li>
+        </ul>
+
+
+        <h3>¿Qué son los criterios de funcionalidad en una implantación Web?</h3>
+        <ul>
+            <li><strong>Disponibilidad:</strong> el servicio debe estar accesible siempre que el usuario lo necesite.</li>
+            <li><strong>Rendimiento:</strong> respuestas rápidas, con tiempos de carga y procesamiento adecuados.</li>
+            <li><strong>Escalabilidad:</strong> capacidad para crecer (más tráfico o datos) sin degradar el servicio.</li>
+            <li><strong>Fiabilidad:</strong> operativa continua con mínimos errores o caídas.</li>
+            <li><strong>Seguridad:</strong> protección contra accesos no autorizados y vulnerabilidades.</li>
+            <li><strong>Mantenibilidad:</strong> facilidad para actualizar, corregir y mejorar la aplicación.</li>
+            <li><strong>Usabilidad:</strong> interfaz clara y coherente que facilite la interacción del usuario.</li>
+        </ul>
+
+        <h3>Protocolos HTTP y HTTPS</h3>
+        <h4>HTTP (HyperText Transfer Protocol)</h4>
+        <ul>
+            <li><strong>Función:</strong> Protocolo de comunicación para la transferencia de páginas web (HTML), imágenes y otros recursos entre cliente (navegador) y servidor.</li>
+            <li><strong>Puerto por defecto:</strong> 80</li>
+            <li><strong>Características principales:</strong>
+                <ul>
+                    <li>Texto plano: las peticiones y respuestas viajan sin cifrado.</li>
+                    <li>Basado en modelo petición-respuesta: el cliente envía un método (GET, POST, etc.) y el servidor responde con un código de estado (200, 404, etc.) y un cuerpo (HTML, JSON, etc.).</li>
+                    <li>Stateless: cada petición es independiente; el servidor no recuerda estados anteriores.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>HTTPS (HTTP Secure o HTTP sobre TLS/SSL)</h4>
+        <ul>
+            <li><strong>Función:</strong> Misma lógica que HTTP, pero con una capa de seguridad que cifra toda la comunicación.</li>
+            <li><strong>Puerto por defecto:</strong> 443</li>
+            <li><strong>Características principales:</strong>
+                <ul>
+                    <li>Cifrado TLS/SSL: asegura confidencialidad (nadie puede leer los datos), integridad (no se modifican en tránsito) y autenticidad (el servidor es quien dice ser).</li>
+                    <li>Handshake: antes de intercambiar datos HTTP, cliente y servidor negocian algoritmos de cifrado y validan certificados digitales.</li>
+                    <li>Requisitos: certificado SSL/TLS emitido por una Autoridad de Certificación (CA) o Let’s Encrypt para entornos gratuitos.</li>
+                </ul>
+            </li>
+        </ul>
+
+
+        <h3>Certificados SSL/TLS</h3>
+        <h4>SSL vs. TLS</h4>
+        <p>Son ficheros digitales que autentican la identidad de un servidor y cifran la comunicación para proteger los datos en tránsito.</p>
+        <ul>
+            <li><strong>Origen:</strong> SSL es el protocolo inicial (ahora obsoleto); TLS es su evolución segura.</li>
+            <li><strong>Seguridad:</strong> TLS corrige vulnerabilidades de SSL y usa cifrados modernos.</li>
+            <li><strong>Rendimiento:</strong> TLS (especialmente 1.3) tiene un “handshake” más rápido y eficiente.</li>
+            <li><strong>Uso actual:</strong> SSL ya no se usa; siempre se implementa TLS (mínimo 1.2, ideal 1.3).</li>
+        </ul>
+
+
+        <h3>¿Qué es un Certificado digital?</h3>
+        <blockquote>
+            “Fichero informático firmado electrónicamente por un prestador de servicios de certificación.”
+        </blockquote>
+        <p>Tiene una estructura de datos que contiene información sobre la entidad. La firma de la estructura de datos agrupa la información que contiene de forma que no puede ser modificada sin que esta modificación sea detectada.</p>
+
+        <h3>¿Qué es un Certificado de clave pública?</h3>
+        <p>Asocian una clave pública a alguna representación de la identidad de la entidad. La clave privada se asocia a la clave pública y asume que está en posesión de dicha entidad.</p>
+        <p>Se puede incluir otra información relevante como periodo de validez, identificador de los algoritmos para los cuales se puede usar la clave pública, restricciones, etc.</p>
+        <p>Para asegurar la confidencialidad del mensaje se utilizan técnicas y sistemas criptográficos. El cifrado consiste en aplicar un algoritmo para cifrar un mensaje reconocible y que este solo pueda ser descifrado con este mismo algoritmo y su clave.</p>
+        <p>Hay dos opciones básicas en el cifrado digital:</p>
+        <ul>
+            <li><strong>Clave simétrica:</strong> Se utiliza una sola clave para cifrar y descifrar el mensaje. Proceso más rápido, pero más expuesto al tener que enviar la clave.</li>
+            <li><strong>Clave asimétrica:</strong> Cada usuario tiene una pareja de claves, una privada y otra pública. Proceso más lento, pero más seguro al no enviar la clave.</li>
+        </ul>
+
+        <h3>¿Qué es un Certificado SSL?</h3>
+        <blockquote>
+            “Es un certificado digital que autentica la identidad de un sitio web y habilita una conexión cifrada. La sigla SSL significa Secure Sockets Layer (capa de sockets seguros), un protocolo de seguridad que crea un enlace cifrado en un servidor web y un navegador web.”
+        </blockquote>
+
+
+        <h3>Puertos de comunicación y firewall</h3>
+        <h4>Puertos de comunicación</h4>
+        <p>Los puertos son identificadores numéricos (0–65 535) que permiten a un mismo equipo ofrecer múltiples servicios de red simultáneamente. Cada servicio “escucha” en su puerto asignado para recibir conexiones:</p>
+        <ul>
+            <li><strong>Bien conocidos (0–1023):</strong> HTTP (80), HTTPS (443), SSH (22), FTP (21)…</li>
+            <li><strong>Registrados (1024–49 151):</strong> servicios de aplicaciones específicas.</li>
+            <li><strong>Dinámicos/privados (49 152–65 535):</strong> asignados de forma temporal por el sistema operativo.</li>
+        </ul>
+
+        <h4>Firewall</h4>
+        <p>Un firewall es un filtro entre dos redes (por ejemplo, tu servidor e Internet) que decide qué tráfico permitir o bloquear según reglas predefinidas:</p>
+        <ul>
+            <li><strong>Filtrado de paquetes (stateless):</strong> examina cada paquete de forma individual (puerto, IP, protocolo).</li>
+            <li><strong>Inspección con estado (stateful):</strong> mantiene contexto de conexiones activas, ofreciendo mayor precisión.</li>
+            <li><strong>Firewall de aplicación (WAF):</strong> analiza tráfico a nivel HTTP/S para proteger contra ataques web (inyección SQL, XSS, etc.).</li>
+        </ul>
+
+        <h3>Parámetros de configuración: permisos, usuarios, cuotas, tiempo de espera</h3>
+
+        <h4>Permisos</h4>
+        <ul>
+            <li>Definen qué operaciones puede realizar cada entidad (archivo, proceso, usuario).</li>
+            <li>Se gestionan a nivel de sistema de ficheros (lectura, escritura, ejecución) y a nivel de aplicación (roles y privilegios).</li>
+            <li>Buena práctica: aplicar el principio de mínimo privilegio: dar solo los permisos estrictamente necesarios.</li>
+        </ul>
+
+        <h4>Cuotas</h4>
+        <ul>
+            <li>Límites asignados a usuarios o aplicaciones sobre recursos (espacio en disco, número de procesos, conexiones simultáneas, ancho de banda).</li>
+            <li>Evitan que un solo usuario agote recursos críticos y aseguran calidad de servicio al resto.</li>
+            <li>Ejemplo: máximo 5 GB de almacenamiento por cuenta, 100 conexiones concurrentes por IP.</li>
+        </ul>
+
+        <h4>Tiempo de espera (timeouts)</h4>
+        <ul>
+            <li><strong>Idle timeout:</strong> tiempo de inactividad tras el cual se cierra la sesión.</li>
+            <li><strong>Connection timeout:</strong> límite para establecer la conexión.</li>
+            <li><strong>Request timeout:</strong> tiempo máximo para procesar una petición.</li>
+        </ul>
+        <p><em>Esto se aplica al apartado de FTP (tener en cuenta).</em></p>
+
+        <h3>Tipos de usuarios y accesos al servicio</h3>
+        <p>Existen tres formas de acceder a un servicio de transferencia de archivos, cada una de las cuales define un tipo de usuario:</p>
+        <ul>
+            <li><strong>Acceso anónimo:</strong> acceso libre sin restricciones. No se solicita autenticación. Solo permite descargar archivos.</li>
+            <li><strong>Acceso de Invitado:</strong> requiere un usuario genérico con acceso restringido. Es sencillo de administrar porque ya está predefinido en el sistema.</li>
+            <li><strong>Acceso con usuario:</strong> requiere autenticación con nombre y contraseña. Requiere mantenimiento y asignación de permisos. Es el sistema utilizado en servidores compartidos de páginas web para evitar modificaciones no autorizadas.</li>
+        </ul>
+
+</main>
+</body>
+</html>

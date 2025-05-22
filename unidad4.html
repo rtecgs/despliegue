@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unidad 4 - Control de versiones y documentación</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+        <a href="index.html">Uni 1</a>
+        <a href="unidad2.html">Uni 2</a>
+        <a href="unidad3.html">Uni 3</a>
+        <a href="unidad4.html">Uni 4</a>
+    </nav>
+    <main>
+        <h3>4 - Control de versiones y documentación</h3>
+
+        <h3>Documentación</h3>
+        <blockquote>
+            “La documentación que se elabora para una aplicación, a pesar de ser un documento técnico que ayude al futuro desarrollo de ésta, debe contener una parte en un lenguaje sencillo para ayudar al usuario final a entender el funcionamiento de la aplicación.”
+        </blockquote>
+
+        <p>Una buena práctica a la hora de desarrollar un <em>software</em> consiste en preparar una documentación detallada sobre las especificaciones del programa. En muchas ocasiones, el personal técnico omite esta acción, ya sea por falta de conocimientos, motivación o presupuesto, o porque no suele considerarse una necesidad básica del proceso de desarrollo. A pesar de ello, es importante señalar que <strong>se trata de una práctica obligatoria</strong> para todo desarrollador de aplicaciones web.</p>
+
+        <h3>Documentación | Importancia de la documentación</h3>
+
+        <h3>¿Por qué es importante documentar?</h3>
+        <blockquote>“Es importante señalar que se trata de una práctica obligatoria para todo desarrollador de aplicaciones web.”</blockquote>
+
+        <ul>
+            <li><strong>Facilita el mantenimiento:</strong> permite entender cómo funciona una aplicación, qué tecnologías utiliza y cómo está estructurada. Esto es clave cuando se deben corregir errores o añadir nuevas funcionalidades.</li>
+            <li><strong>Mejora la colaboración entre desarrolladores:</strong> asegura que todos comprendan el propósito y funcionamiento del código, evitando malentendidos y duplicaciones de esfuerzo.</li>
+            <li><strong>Permite escalar o evolucionar el proyecto con seguridad:</strong> facilita la adaptación a nuevas necesidades sin comprometer la integridad del proyecto.</li>
+            <li><strong>Ayuda a integrar nuevas personas al equipo:</strong> nuevos programadores pueden ponerse al día rápidamente con una guía técnica clara.</li>
+            <li><strong>Evita la dependencia del autor original del código:</strong> sin documentación, solo quien escribió el código lo entiende. Esto es riesgoso si esa persona no está disponible.</li>
+            <li><strong>Es obligatoria en entornos profesionales y formativos.</strong></li>
+        </ul>
+
+        <h3>Ejemplo real:</h3>
+        <p>En un equipo de tres personas desarrollando con Node.js, si cada uno usa diferentes convenciones o no comenta el código, los errores y malentendidos son inevitables.</p>
+
+        <p>Imagina que heredas una aplicación REST hecha en PHP que consulta una base de datos. Sin documentación, no sabes:</p>
+        <ul>
+            <li>Qué endpoints existen.</li>
+            <li>Qué parámetros esperan.</li>
+            <li>Qué hacen exactamente.</li>
+        </ul>
+
+        <h3>Tipos y formatos de documentación:</h3>
+        <ul>
+            <li><strong>Técnica:</strong> estructura, lenguajes, librerías, configuración.</li>
+            <li><strong>Funcional:</strong> cómo usar la aplicación.</li>
+            <li><strong>De instalación/despliegue.</strong></li>
+            <li><strong>De API:</strong> especialmente para REST.</li>
+        </ul>
+    
+        <h2>Documentación | Tipos y formatos</h2>
+
+        <h3>Formatos frecuentes:</h3>
+        <ul>
+            <li>Texto (Word, PDF).</li>
+            <li>Formato web interactivo (Markdown + HTML).</li>
+            <li>Auto-generada desde el código fuente.</li>
+        </ul>
+
+        <h4>1. Markdown (.md)</h4>
+        <ul>
+            <li>Sencillo, rápido de escribir, legible y soportado por todas las plataformas de control de versiones.</li>
+            <li>Ideal para comenzar un proyecto o mantener documentación viva.</li>
+            <li>Limitado para documentación técnica compleja (API, tipos de datos, esquemas…).</li>
+        </ul>
+
+        <h4>2. YAML o JSON (OpenAPI 3)</h4>
+        <ul>
+            <li>Estándar en el mundo REST para describir APIs.</li>
+            <li>Compatible con herramientas como Swagger, Redoc, Stoplight.</li>
+            <li>Requiere cierta estructura y conocimiento técnico.</li>
+        </ul>
+
+        <h4>3. HTML</h4>
+        <ul>
+            <li>Permite documentación rica, navegable e interactiva.</li>
+            <li>Usado con generadores como Docusaurus, MkDocs, GitBook.</li>
+            <li>Requiere hosting y a menudo herramientas extra.</li>
+        </ul>
+
+        <h4>4. PDF</h4>
+        <ul>
+            <li>Perfecto para entregar documentación estática, formal o académica.</li>
+            <li>Aceptado como estándar para documentación legal o para clientes.</li>
+            <li>No editable fácilmente ni versionable.</li>
+        </ul>
+
+        <h4>5. XML</h4>
+        <ul>
+            <li>Todavía se usa en sistemas legacy, configuración (Maven, Android), y estandarización (WSDL, SOAP).</li>
+            <li>Ha sido reemplazado por JSON y YAML en la mayoría de casos modernos.</li>
+        </ul>
+
+
+        <h2>Documentación | Control de versiones</h2>
+
+        <h3>¿Qué es?</h3>
+        <blockquote>“Seguimiento de las versiones de cada aplicación, porque a lo largo de la vida de una aplicación deberán realizarse cambios.”</blockquote>
+
+        <h4>Funciones principales:</h4>
+        <ul>
+            <li>Historial de cambios.</li>
+            <li>Volver a versiones estables.</li>
+            <li>Colaboración simultánea.</li>
+            <li>Prevención de conflictos.</li>
+        </ul>
+
+        <h4>Ejemplos de comandos básicos de Git:</h4>
+        <ul>
+            <li><code>git init</code></li>
+            <li><code>git add</code></li>
+            <li><code>git commit -m "Primera versión de la API de productos"</code></li>
+        </ul>
+
+
+        <h2>Documentación | Herramientas de control de versiones</h2>
+
+        <ul>
+            <li>Git (CLI o con interfaz como GitHub Desktop)</li>
+            <li>GitHub, GitLab, Bitbucket</li>
+        </ul>
+
+        <h4>Operaciones comunes:</h4>
+        <ul>
+            <li><code>clone</code>, <code>commit</code>, <code>push</code>, <code>pull</code>, <code>merge</code>, <code>branch</code></li>
+        </ul>
+
+
+        <h2>Documentación | Buenas prácticas</h2>
+
+        <blockquote>“Es importante documentar también todos estos cambios para que la información no se quede obsoleta o existan incompatibilidades entre versiones.”</blockquote>
+
+        <h4>Recomendaciones clave:</h4>
+        <ul>
+            <li>Comenzar la documentación desde el primer día.</li>
+            <li>Documentar cada endpoint REST.</li>
+            <li>Añadir comentarios relevantes en PHP/JS.</li>
+            <li>Usar plantillas y estilos homogéneos.</li>
+            <li>Actualizar siempre junto al código.</li>
+        </ul>
+
+</main>
+</body>
+</html>
