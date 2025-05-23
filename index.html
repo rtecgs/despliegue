@@ -48,18 +48,18 @@
         <p>El navegador interpreta ese contenido y lo muestra en pantalla. En este esquema estático, todos los usuarios reciben exactamente la misma página, que solo puede cambiar si los programadores modifican manualmente los archivos en el servidor.</p>
     
         <h4>Modelo de tres capas</h4>
-        <p>El <strong>modelo de tres capas</strong> es una adaptación a la web del patrón Modelo-Vista-Controlador, que distingue tres elementos:</p>
+        <p>El <strong>modelo de tres capas</strong> es una arquitectura común en aplicaciones web que guarda relación con el patrón Modelo-Vista-Controlador (MVC). Aunque no son equivalentes, ambos promueven la separación de responsabilidades dentro del sistema. Este modelo distingue tres elementos fundamentales:</p>
         <ul>
-            <li><strong>Modelo:</strong> El objetivo del patrón es que la vista y el controlador “traduzcan” en ambos sentidos el esquema de datos mental del usuario (su conocimiento) al esquema de datos guardado en el ordenador, al que se llama modelo. De este modo, el usuario puede consultar y manipular los datos del ordenador según desee, sin importarle cómo se organizan en éste.</li>
-            <li><strong>Vista:</strong> Una vista es una perspectiva del modelo, o de una parte de éste, adecuada para su presentación, y que comunica directamente con el modelo.</li>
-            <li><strong>Controlador:</strong> Es la interfaz que presenta la vista al usuario y le permite comunicarse con el sistema.</li>
+            <li><strong>Modelo:</strong> Representa los datos y su lógica. Vista y controlador actúan como puente entre los datos internos del sistema y la comprensión que tiene el usuario, permitiendo consultar y modificar información sin conocer cómo se almacena internamente.</li>
+            <li><strong>Vista:</strong> Es la representación visual del modelo, adaptada para que el usuario interactúe con la información. Puede mostrar todo el modelo o solo una parte relevante.</li>
+            <li><strong>Controlador:</strong> Es el componente que interpreta las acciones del usuario (clics, formularios, etc.) y responde a ellas, actualizando el modelo o la vista según corresponda.</li>
         </ul>
 
         <h4>Capas del modelo de tres capas</h4>
         <ul>
-            <li><strong>Capa 1. Navegador web:</strong> Es el controlador, muestra los datos al usuario y le permite hacer sus propias consultas al sistema mediante formularios, así como entregar los resultados al servidor de aplicaciones.</li>
-            <li><strong>Capa 2. Servidor de aplicaciones web:</strong> Forma la Vista. Las aplicaciones realizan las consultas a la base de datos y generan las páginas web, que se enviarán al usuario según el contenido de dicha base de datos y las peticiones procedentes del controlador. El servidor web que envía las páginas al navegador del cliente y recibe los formularios de éste está integrado en el servidor de aplicaciones.</li>
-            <li><strong>Capa 3. Servidor de base de datos:</strong> Equivale al modelo en el patrón Modelo-Vista-Controlador.</li>
+            <li><strong>Capa 1. Navegador web:</strong> Forma parte de la capa de presentación. Permite al usuario visualizar datos y enviar formularios que serán procesados por el servidor de aplicaciones.</li>
+            <li><strong>Capa 2. Servidor de aplicaciones web:</strong> Contiene la lógica de negocio. Recibe peticiones del cliente, consulta la base de datos, genera contenido dinámico y envía las páginas resultantes al navegador. El servidor web está normalmente integrado en esta capa.</li>
+            <li><strong>Capa 3. Servidor de base de datos:</strong> Es la capa encargada del almacenamiento de datos. Responde a las consultas del servidor de aplicaciones y representa lo que en MVC se conoce como el modelo.</li>
         </ul>
 
 
